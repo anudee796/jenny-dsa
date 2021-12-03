@@ -1,0 +1,80 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define N 5
+int top1=-1,top2=-1;
+int stack1[N],stack2[N];
+int count=0;
+int main(){  //implementing queue using stack
+    int choice,data;
+    while(1){
+        printf("1.enqueue\n");
+        printf("2.dequeue\n");
+        printf("3.display\n");
+        printf("4.exit\n");
+        switch(choice){
+            case 1:scanf("%d",&data);
+            enqueue(data);
+            break;
+             case 2:dequeue();
+            break;
+             case 3:display();
+            break;
+             case 4:exit(0);
+            break;
+        }
+    }
+}
+void enqueue(int data){
+    push1(data);
+    count++;
+}
+void push1(int data){
+    if(top1==N-1){
+        printf("queue is full\n");
+    }else{
+        top1++;
+        stack[top1]=data;
+    }
+}
+void dequeue(){
+    int a,b,c;
+    if(top1==-1&&top2==-1){
+        printf("queue is empty we cannot delete\n");
+    }else{
+        for(int i=0;i<count;i++){
+            a=pop1();
+            push2(a);
+        }
+        b=pop2();
+        count--;
+        printf("deleted element is %d",b);
+        for(int i=0;i<count;i++){
+            c=pop2();
+            push1(c);
+            
+        }
+    }
+    
+}
+void pop2(){
+    if(top2==-1){
+        printf("queue is empty\n");
+    }else{
+        return stack2[top2--];
+    }
+}
+void pop1(){
+    if(top1==-1){
+        printf("queue is empty\n");
+    }else{
+        return stack1[top1--];
+    }
+}
+void push2(int data){
+    if(top2==N-1){
+        printf("queue is full\n");
+    }else{
+        top2++;
+        stack[top2]=data;
+    }
+}
